@@ -2,17 +2,52 @@
 <html>
 <head>
     <title>Météo</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        #result { margin-top: 20px; }
+    </style>
 </head>
 <body>
     <h1>Application Météo</h1>
 
-    <form method="get">
-        <input type="text" name="city" placeholder="Entrer une ville">
+    <form id="weatherForm">
+        <input type="text" id="cityInput" placeholder="Entrer une ville">
         <button type="submit">Rechercher</button>
     </form>
 
-    <h2>{{ city }}</h2>
-    <p>Température : {{ temperature }} °C</p>
-    <p>Description : {{ description }}</p>
+    <div id="result">
+        {% if city and temperature and description %}
+            <h2>{{ city }}</h2>
+            <p>Température : {{ temperature }} °C</p>
+            <p>Description : {{ description }}</p>
+        {% else %}
+            <p>Entrez une ville pour voir la météo.</p>
+        {% endif %}
+    </div>
+
+    <script>
+        // Sélection du formulaire et de l'input
+        const form = document.getElementById('weatherForm');
+        const cityInput = document.getElementById('cityInput');
+        const resultDiv = document.getElementById('result');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // empêche le rechargement
+
+            const city = cityInput.value.trim();
+
+            if (!city) {
+                alert('Veuillez entrer une ville !');
+                return;
+            }
+
+            // Simuler l'affichage dynamique (données fictives)
+            resultDiv.innerHTML = `
+                <h2>${city}</h2>
+                <p>Température : 25 °C</p>
+                <p>Description : Ensoleillé</p>
+            `;
+        });
+    </script>
 </body>
 </html>
