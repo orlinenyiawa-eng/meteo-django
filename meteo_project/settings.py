@@ -38,7 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'meteo',
+    'django_plotly_dash.apps.DjangoPlotlyDashConfig', 
+
 ]
+   
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
